@@ -25,3 +25,7 @@ Build the UR5e robot model and associated dynamic parameter matrices as well as 
 
 ## "sub_direct" folder
 Dynamic parameter matrices built from function_generator is saved here. Some micelleneous functions are also defined here.
+
+## Submitted to
+IFAC world congress 2022:
+"Geometric Impedance Control on SE(3) for Robotic Manipulators"
