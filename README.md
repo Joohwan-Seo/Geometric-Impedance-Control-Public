@@ -29,3 +29,6 @@ Dynamic parameter matrices built from function_generator is saved here. Some mis
 ## Submitted to
 IFAC world congress 2023:
 "Geometric Impedance Control on SE(3) for Robotic Manipulators"
+
+arxiv submitted version:
+https://doi.org/10.48550/arXiv.2211.07945
