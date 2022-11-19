@@ -34,9 +34,9 @@ arxiv submitted version:
 https://doi.org/10.48550/arXiv.2211.07945
 
 ## Bibtex Citation
-@article{seo2022geometric,
-  title={Geometric Impedance Control on SE (3) for Robotic Manipulators},
-  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Horowitz, Roberto},
-  journal={arXiv preprint arXiv:2211.07945},
-  year={2022}
+@article{seo2022geometric, \
+  title={Geometric Impedance Control on SE (3) for Robotic Manipulators},\
+  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Horowitz, Roberto},\
+  journal={arXiv preprint arXiv:2211.07945},\
+  year={2022}\
 }
