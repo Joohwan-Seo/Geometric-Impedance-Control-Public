@@ -111,7 +111,7 @@ Jb = UR5e.jacobe(q);
 % G = UR5e.gravload(q);
 g_st_ = UR5e.fkine(q);
 Je = UR5e.jacob0(q);
-Je_dot = UR5e.jacob_dot(q,dq);
+% Je_dot = UR5e.jacob_dot(q,dq);
 toc
 
 % M = simplify(M);
@@ -124,12 +124,15 @@ g_st = simplify([g_st_.R, g_st_.t;
 N = length(q);
 
 Jb_dot = zeros(6,N);
+Je_dot = zeros(6,N);
 
 for k = 1 : N
     Jb_dot = Jb_dot + diff(Jb,q(k))*dq(k);
+    Je_dot = Je_dot + diff(Je,q(k))*dq(k);
 end
 
 Jb_dot = simplify(Jb_dot);
+Je_dot = simplify(Je_dot);
 %%
 % tic
 % matlabFunction(M,'File','sub_direct/M_fun', ...
