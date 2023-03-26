@@ -27,12 +27,12 @@ Change `obj` variable to `tracking`, `tracking2`, `regulation`, and `regulation2
 `tracking`: sinusoidal trajectory tracking (presented in paper)\
 `tracking2`: 3rd-order smooth polynomial trajectory tracking both in translational and rotational\
 `regulation`: regulation task\
-`regulation2`: Multi-point regulation, can be considered as step-input case.\
+`regulation2`: Multi-point regulation, can be considered as step-input case.
 
 `desired_trajectory.m` gives the trajectory utilized in `tracking` objective.\
 `desired_trajectory2.m` gives the trajectory utilized in `tracking2` objective.\
 `desired_trajectory_regulation.m` gives the desired setpoint utilized in `regulation` objective.\
-`desired_trajectory_regulation2.m` gives the desired setpoints utilized in `regulation2` objective.\
+`desired_trajectory_regulation2.m` gives the desired setpoints utilized in `regulation2` objective.
 
 ## "function_generator" folder
 `RTB matlab` (Robotics Toobox Matlab) is needed to run the code. \
@@ -50,6 +50,8 @@ IFAC world congress 2023:
 
 arxiv submitted version:
 https://doi.org/10.48550/arXiv.2211.07945
+
+2023/03/25 WARNING: arxiv version is still old version, we will going to upload soon with revised version.
 
 ## Bibtex Citation
 @article{seo2022geometric, \
