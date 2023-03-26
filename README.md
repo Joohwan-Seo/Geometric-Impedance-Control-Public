@@ -51,7 +51,7 @@ IFAC world congress 2023:
 arxiv submitted version:
 https://doi.org/10.48550/arXiv.2211.07945
 
-2023/03/25 WARNING: arxiv version is still old version, we will going to upload soon with revised version.
+2023/03/25 WARNING: arxiv version is still old version, we will soon update it with revised version.
 
 ## Bibtex Citation
 @article{seo2022geometric, \
