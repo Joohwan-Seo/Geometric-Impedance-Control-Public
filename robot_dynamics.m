@@ -16,10 +16,18 @@ function dS = robot_dynamics(t,q,T)
     dS(4) = dq4;
     dS(5) = dq5;
     dS(6) = dq6;
+    
+    J = Je_fun(q1,q2,q3,q4,q5,q6);
 
-    Fe = zeros(6,1);
 
-    ddq = inv(M) * (-C*dq - G' + T + Fe);
+    Fx = 0; Fy = 0; Fz = 0;
+    tx = 0; ty = 0; tz = 0;
+    
+    Fe = [Fx; Fy; Fz; tx; ty; tz];
+    
+    Te = J' * Fe;
+
+    ddq = inv(M) * (-C*dq - G' + T + Te);
     
     dS(7) = ddq(1);
     dS(8) = ddq(2);
