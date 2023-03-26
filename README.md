@@ -7,7 +7,7 @@ Written by Joohwan Seo, Ph.D. Student in Mechanical Engineering, UC Berkeley.
 This is quite raw, unorganized files. I hope everyone can get some of the insights, and please forgive me for the nasty codes.
 
 ## Fixes & Update
-# 2023/03/25
+### 2023/03/25
 1. There was serious error in benchmark controller; now that it is fixed, it works far better than before.\
 2. For the readers to test controllers in various scenarios, more scenarios are added.\
 3. In `tracking2`, we show a way to design a polynomial-based smooth trajectory generation technique also for rotational part.\
