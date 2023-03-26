@@ -8,6 +8,8 @@ clear; close all; clc;
 saving = true;
 
 addpath('sub_direct');
+addpath('results');
+
 % obj = 'tracking'; % or regulation
 obj = 'regulation'; % or regulation
 %% initialization
@@ -214,8 +216,8 @@ result_imp.t = t;
 result_imp.lyap = lyap_arr;
 
     if strcmp(obj,"tracking")
-        save('result_imp2_tracking.mat','result_imp');
+        save('results/result_imp2_tracking.mat','result_imp');
     elseif strcmp(obj,'regulation')
-        save('result_imp2_regulation.mat','result_imp');
+        save('results/result_imp2_regulation.mat','result_imp');
     end
 end

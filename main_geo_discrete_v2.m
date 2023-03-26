@@ -5,6 +5,8 @@ clear; close all; clc;
 saving = true;
 
 addpath('sub_direct')
+addpath('results')
+
 % obj = 'tracking'; 
 % obj = 'tracking2';
 % obj = 'regulation2';
@@ -223,12 +225,12 @@ result_geo2.t = t;
 result_geo2.lyap = cost_arr;
 
     if strcmp(obj,"tracking")
-        save('result_geo2_tracking.mat','result_geo2');
+        save('results/result_geo2_tracking.mat','result_geo2');
     elseif strcmp(obj,'regulation')
-        save('result_geo2_regulation.mat','result_geo2');
+        save('results/result_geo2_regulation.mat','result_geo2');
     elseif strcmp(obj,'tracking2')
-        save('result_geo2_tracking2.mat','result_geo2');
+        save('results/result_geo2_tracking2.mat','result_geo2');
     elseif strcmp(obj,'regulation2')
-        save('result_geo2_regulation2.mat','result_geo2');
+        save('results/result_geo2_regulation2.mat','result_geo2');
     end
 end

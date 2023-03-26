@@ -1,30 +1,29 @@
 clear; close all; clc;
 
 addpath 'sub_direct'
+addpath('results')
 
-% obj = 'tracking';
+obj = 'tracking';
 % obj = 'tracking2';
 % obj = 'regulation2';
 % obj = 'regulation';
 %%
-export_to_tikz = false;
-%%
 if strcmp(obj,'regulation')
-    load('result_geo2_regulation.mat');
-    load('result_imp_regulation.mat');
+    load('results/result_geo2_regulation.mat');
+    load('results/result_imp_regulation.mat');
 elseif strcmp(obj,'tracking')
-    load('result_geo2_tracking.mat');
-    load('result_imp_tracking.mat');
+    load('results/result_geo2_tracking.mat');
+    load('results/result_imp_tracking.mat');
 elseif strcmp(obj,'tracking2')
-    load('result_geo2_tracking2.mat');
-    load('result_imp_tracking2.mat');
+    load('results/result_geo2_tracking2.mat');
+    load('results/result_imp_tracking2.mat');
 elseif strcmp(obj,'regulation2')
-    load('result_geo2_regulation2.mat');
-    load('result_imp_regulation2.mat');
+    load('results/result_geo2_regulation2.mat');
+    load('results/result_imp_regulation2.mat');
 end
 
 %downsample data by factor
-down = 10; % default 1
+down = 1; % default 1
 
 t = result_geo2.t;
 
@@ -98,14 +97,6 @@ for k = 1 : length(h)/nk
           [p_imp(3,idx), p_imp(3,idx) + scale * R_imp(3,3,idx)],'g');
 end
 axis equal
-
-%export fig as tex-file
-if export_to_tikz
-    warning('off')
-    name = ['pics\trajectory_3d_', obj , '.tex'];
-    matlab2tikz(name)
-    warning('on')
-end
 %%
 figure(2)
 subplot(3,1,1);
@@ -121,14 +112,6 @@ plot(t_,gd(1:end-1,3,4),'k:'); hold on; grid on;
 plot(t_,result_geo2.g(1:end-1,3,4),'r'); 
 plot(t_,result_imp.g(1:end-1,3,4),'b--');
 ylabel('z (m)'); xlabel('t (s)');
-
-%export fig as tex-file
-if export_to_tikz
-    warning('off')
-    name = ['pics\comparison_xyz_', obj , '.tex'];
-    matlab2tikz(name)
-    warning('on')
-end
 %%
 err_geo = zeros(1,N);
 err_imp = zeros(1,N);
@@ -150,26 +133,11 @@ plot(t_,err_geo(1:end-1),'r'); hold on; grid on;
 plot(t_,err_imp(1:end-1),'b--');
 xlabel('t (s)'); ylabel('Error function \Psi')
 
-%export fig as tex-file
-if export_to_tikz
-    warning('off')
-    name = ['pics\error_func_', obj , '.tex']
-    matlab2tikz(name)
-    warning('on')
-end
-
 figure(4)
 plot(t_,result_geo2.lyap(1:end-1),'r'); hold on; grid on;
 plot(t_,result_imp.lyap(1:end-1),'b--');
 xlabel('t (s)'); ylabel('Dynamic Cost \Phi');
 
-if export_to_tikz
-    warning('off')
-    name = ['pics\dynamic_cost_', obj , '.tex'];
-    matlab2tikz(name)
-    warning('on')
-end
-% ylim([0,1])
 %%
 RMS_p_geo = rms(p_geo - p_des,2);
 RMS_p_imp = rms(p_imp - p_des,2);
@@ -191,10 +159,5 @@ for k = 1 : N-1
     det_imp(k) = det(R_imp(:,:,k));
     det_geo(k) = det(R_geo(:,:,k));
 end
-
-figure(3)
-plot(t_,err_geo(1:end-1),'r'); hold on; grid on;
-plot(t_,err_imp(1:end-1),'b--');
-xlabel('t (s)'); ylabel('Error function \Psi')
 
 

@@ -8,16 +8,26 @@ This is quite raw, unorganized files. I hope everyone can get some of the insigh
 
 
 ## Main files
-`main_geo_discrete.m` runs the simulation for the proposed approach \
+`main_geo_discrete.m` runs the simulation for the proposed approach (intuitive geometric impedance)\
+`main_imp_discrete_v2.m` runs the simulation for the proposed approach (geometric impedance)\
 `main_imp_discrete.m` runs the simulation for the benchmark approach \
+`main_imp_discrete_v2.m` runs the simulation for the benchmark approach, version 2 \
 `plotter.m` for visualizing the result.
 
-Switch between the `tracking` and `regulation` to select the obejctive.
+`plotter_geo_comp.m` for comparison between two geometric controllers. When the gains become different, they started to behave different.\
+When gains are scalar in translational and rotational way, the both controllers are identical.
 
-## Trajectory files
-`desired_trajectory.m` gives the trajectory for the simulation in body-frame, utilized for the proposed control.\
-`desired_trajectory_spatial.m` gives the trajectory for the simulation in spatial frame, utilized for the benchmark approach.\
-`desired_trajectory_regulation.m` give just desired orientation and point, both in spatial frame. 
+## Objectives in Main files
+Change `obj` variable to `tracking`, `tracking2`, `regulation`, and `regulation2`.
+`tracking`: sinusoidal trajectory tracking (presented in paper)\
+`tracking2`: 3rd-order smooth polynomial trajectory tracking both in translational and rotational\
+`regulation`: regulation task\
+`regulation2`: Multi-point regulation, can be considered as step-input case.\
+
+`desired_trajectory.m` gives the trajectory utilized in `tracking` objective.\
+`desired_trajectory2.m` gives the trajectory utilized in `tracking2` objective.\
+`desired_trajectory_regulation.m` gives the desired setpoint utilized in `regulation` objective.\
+`desired_trajectory_regulation2.m` gives the desired setpoints utilized in `regulation2` objective.\
 
 ## "function_generator" folder
 `RTB matlab` (Robotics Toobox Matlab) is needed to run the code. \

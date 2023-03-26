@@ -3,6 +3,8 @@ clear; close all; clc;
 saving = true;
 
 addpath('sub_direct');
+addpath('results')
+
 % obj = 'tracking'; 
 % obj = 'tracking2';
 % obj = 'regulation2';
@@ -233,12 +235,12 @@ result_imp.t = t;
 result_imp.lyap = cost_arr;
 
     if strcmp(obj,"tracking")
-        save('result_imp_tracking.mat','result_imp');
+        save('results/result_imp_tracking.mat','result_imp');
     elseif strcmp(obj,'regulation')
-        save('result_imp_regulation.mat','result_imp');
+        save('results/result_imp_regulation.mat','result_imp');
     elseif strcmp(obj,'tracking2')
-        save('result_imp_tracking2.mat','result_imp');
+        save('results/result_imp_tracking2.mat','result_imp');
     elseif strcmp(obj,'regulation2')
-        save('result_imp_regulation2.mat','result_imp');
+        save('results/result_imp_regulation2.mat','result_imp');
     end
 end
