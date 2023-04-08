@@ -30,7 +30,7 @@ This is quite raw, unorganized files. I hope everyone can get some of the insigh
 ### Note
 Comparison results on `plotter2.m` is not presented in the paper since the two control laws are different, thus unable to do fair comparison. 
 
-`plotter_geo_comp.m` for comparison between two geometric controllers. When the gains become different, they started to behave different.\
+`plotter_geo_comp.m` is for comparison between intuitive geometric impedance control and GIC-v1. When the gains become different, they started to behave different.\
 When gains are scalar in translational and rotational way, the both controllers are identical.
 
 ## Objectives in Main files
@@ -63,11 +63,12 @@ arxiv submitted version:
 https://doi.org/10.48550/arXiv.2211.07945
 
 2023/03/25 WARNING: arxiv version is still old version, we will soon update it with revised version.
+2023/04/07 WARNING: arxiv version is still old, the latest version will be updated at 2023/04/14.
 
 ## Bibtex Citation
 @article{seo2022geometric, \
   title={Geometric Impedance Control on SE (3) for Robotic Manipulators},\
-  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Horowitz, Roberto},\
+  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Choi, Jongeun and Horowitz, Roberto},\
   journal={arXiv preprint arXiv:2211.07945},\
   year={2022}\
 }
