@@ -1,12 +1,14 @@
 clear; close all; clc;
 %%
-% This control law is based on the 'geometric impedance control law version 2'
-% Equation (47)
+% This control law is based on the 'geometric impedance control law version 1'
+% Equation (32)
 %%
 saving = true;
 
 addpath('sub_direct')
-obj = 'tracking';
+addpath('results')
+
+obj = 'tracking'; 
 % obj = 'tracking2';
 % obj = 'regulation2';
 % obj = 'regulation';
@@ -24,7 +26,6 @@ t = 0 : 0.001 : t_end;
 N = length(t);
 
 S = zeros(12,N);
-
 if strcmp(obj,'tracking')
    S(1:6,1) = [0.2, -0.5, 0.4, 0.6, -0.5, 0.2];
 elseif strcmp(obj,'tracking2')
@@ -57,15 +58,15 @@ pd_arr = zeros(3,N);
 g_d_arr = zeros(N,4,4);
 F_arr = zeros(6,N);
 sing_arr = zeros(1,N);
-
 err_arr = zeros(1,N);
 err_rot_arr = zeros(1,N);
 
 lyap_arr = zeros(1,N);
 potential_arr = zeros(1,N);
+
 %% simulation
 for k = 1 : N-1
-    %% input calculation
+    %% input calculation  
     if strcmp(obj,'tracking')
         kp1 = 200; kp2 = 60; kp3 = 80;
         kr1 = 10; kr2 = 30; kr3 = 100;
@@ -76,18 +77,11 @@ for k = 1 : N-1
     
     kd = 50;
     
-    lambda = 0.01;    
-
     Kp = diag([kp1,kp2,kp3]);
     KR = diag([kr1,kr2,kr3]);
-%     Kp = diag([kt1,kt2,kt3]) / (1 + kv * lambda);    
-%     KR = diag([ko1, ko2, ko3]) / (1 + kv * lambda);
-
-    T_max = [150, 100, 100, 100, 100, 100]';
     
     Kg = blkdiag(Kp,KR);
-    Kd = kd * eye(6);
-    
+    Kd = kd * eye(6);    
     %%
     q1 = S(1,k); q2 = S(2,k); q3 = S(3,k); 
     q4 = S(4,k); q5 = S(5,k); q6 = S(6,k);
@@ -107,9 +101,8 @@ for k = 1 : N-1
     g_se_arr(k,:,:) = g_se;
     
     R = g_se(1:3,1:3); p = g_se(1:3,4);
-    V_b = Jb * dq;
+    V_b = Jb * dq; %Body velocity
     v = V_b(1:3); w = V_b(4:6);
-    
     %%
     if strcmp(obj,'tracking')
         [Rd,pd,V_d,dV_d] = desired_trajectory(t(k),g_0,'geo');
@@ -132,19 +125,13 @@ for k = 1 : N-1
     g_d_arr(k,:,:) = [Rd, pd;
                       zeros(1,3),1];
 
-    f_R = vee_map(KR *Rd'*R - R'*Rd * KR); f_p = R'* (Rd * Kp * Rd') * (p - pd);
+    f_R = vee_map(KR *Rd'*R - R'*Rd * KR); 
+    f_p = R'* (Rd * Kp * Rd') * (p - pd);
 
     V_d_star = Adj_map(g_ed) * V_d;
     
     f_g = [f_p; f_R];
-    
-    V_d_bar = V_d_star - lambda * f_g;
     e_V = V_b - V_d_star;
-    e_V_bar = V_b - V_d_bar;
-    %%
-    B_K = [R'*Rd*Kp*Rd'*R, hat_map(f_g);
-           zeros(3,3), trace(R'*Rd*KR)*eye(3) - R'*Rd*KR];
-    f_g_dot = B_K * e_V;
     %%
     R_ed_dot = -hat_map(w)*R'*Rd + R'*Rd*hat_map(wd);
     p_ed_dot = -hat_map(w)*R'*(p - pd) + v - R'*Rd*vd;
@@ -152,8 +139,6 @@ for k = 1 : N-1
                   zeros(3,3), R_ed_dot];
     
     dV_d_star = Ad_ged_dot * V_d + Adj_map(g_ed) * dV_d;
-    
-    u = dV_d_star - lambda * f_g_dot;
     %%
     Jb_inv = inv(M) * Jb' * pinv(Jb * inv(M) * Jb'); 
     M_tilde = Jb_inv' * M * Jb_inv;
@@ -163,8 +148,9 @@ for k = 1 : N-1
         sing_arr(k) = 1;
         F = - f_g - Kd * e_V;
     else
-        F = C_tilde * V_d_bar -  f_g - Kd * e_V_bar + M_tilde * u;
+        F = C_tilde * V_d_star -  f_g - Kd * e_V + M_tilde * dV_d_star;
     end
+    
     
     T1 = Jb'* F;
     T = T1 + G';
@@ -176,9 +162,8 @@ for k = 1 : N-1
     [Time,S_] = ode15s(@(Time,S_) robot_dynamics(Time,S_,T), [t(k),t(k+1)], initVal ,' ');
     [Nn,~] = size(S_);
     S(:,k+1) = S_(Nn,:);
-    
-    
-    potential = potential_fun(g_se, g_d_arr(k,:,:), Kp,KR);
+ 
+    potential = potential_fun(g_se, g_d_arr(k,:,:),Kp,KR);
     kinetic = 1/2 * e_V' * M_tilde * e_V;
     
     err_arr(k) = err_fun(g_se_arr(k,:,:),g_d_arr(k,:,:));
@@ -186,7 +171,7 @@ for k = 1 : N-1
 
     lyap_arr(k) = potential + kinetic;
     potential_arr(k) = potential;
-    
+
     if mod(k,1000) == 0
         disp(k/1000)
     end
@@ -232,23 +217,22 @@ end
 axis equal
 %%
 if saving == true
-result_geo2.S = S;
-result_geo2.g = g_se_arr;
-result_geo2.g_d = g_d_arr;
-result_geo2.T = T;
-result_geo2.T1 = T1;
-result_geo2.t = t;
-result_geo2.lyap = lyap_arr;
-result_geo2.potential = potential_arr;
+result_geo1.S = S;
+result_geo1.g = g_se_arr;
+result_geo1.g_d = g_d_arr;
+result_geo1.T = T;
+result_geo1.T1 = T1;
+result_geo1.t = t;
+result_geo1.potential = potential_arr;
+result_geo1.lyap = lyap_arr;
 
     if strcmp(obj,"tracking")
-        save('results/result_geo2_tracking.mat','result_geo2');
+        save('results/result_geo1_tracking.mat','result_geo1');
     elseif strcmp(obj,'regulation')
-        save('results/result_geo2_regulation.mat','result_geo2');
+        save('results/result_geo1_regulation.mat','result_geo1');
     elseif strcmp(obj,'tracking2')
-        save('results/result_geo2_tracking2.mat','result_geo2');
+        save('results/result_geo1_tracking2.mat','result_geo1');
     elseif strcmp(obj,'regulation2')
-        save('results/result_geo2_regulation2.mat','result_geo2');
+        save('results/result_geo1_regulation2.mat','result_geo1');
     end
 end
-%%

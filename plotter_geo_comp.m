@@ -1,4 +1,4 @@
-clear; close all; clc;
+lear; close all; clc;
 %%
 % Comparison for two geometric impedance controllers
 %%
@@ -11,16 +11,16 @@ obj = 'tracking'; % or regulation
 % obj = 'regulation';
 %%
 if strcmp(obj,'regulation')
-    load('results/result_geo_regulation.mat');
+    load('results/result_geo1_regulation.mat');
     load('results/result_geo2_regulation.mat');
 elseif strcmp(obj,'tracking')
-    load('results/result_geo_tracking.mat');
+    load('results/result_geo1_tracking.mat');
     load('results/result_geo2_tracking.mat');
 elseif strcmp(obj,'tracking2')
-    load('results/result_geo_tracking2.mat');
+    load('results/result_geo1_tracking2.mat');
     load('results/result_geo2_tracking2.mat');
 elseif strcmp(obj,'regulation2')
-    load('results/result_geo_regulation2.mat');
+    load('results/result_geo1_regulation2.mat');
     load('results/result_geo2_regulation2.mat');
 end
 

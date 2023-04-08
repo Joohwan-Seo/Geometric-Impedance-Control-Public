@@ -12,12 +12,23 @@ This is quite raw, unorganized files. I hope everyone can get some of the insigh
 2. For the readers to test controllers in various scenarios, more scenarios are added.
 3. In `desired_trajectory2.m` and `trajectory_calculator.m`, we show a way to design a polynomial-based smooth trajectory generation technique also for rotational part.
 
+### 2023/04/07
+0. Final version of the paper submitted.
+1. Control equations are added on every main_geo_discrete files.
+2. Geometric Impedance Control version 2 added
+3. Additional updates on the trajectory tracking simulations.
+4. Code variables are now match with the variables in the paper.
+
 ## Main files
-`main_geo_discrete.m` runs the simulation for the proposed approach (intuitive geometric impedance)\
-`main_imp_discrete_v2.m` runs the simulation for the proposed approach (geometric impedance)\
-`main_imp_discrete.m` runs the simulation for the benchmark approach \
-`main_imp_discrete_v2.m` runs the simulation for the benchmark approach, version 2 \
-`plotter.m` for visualizing the result.
+`main_geo_discrete.m` runs the simulation for the proposed approach (intuitive geometric impedance) - Equation (30)\
+`main_geo_discrete_v2.m` runs the simulation for the proposed approach (geometric impedance control-version 1, GIC-v1) - Equation (32)\
+`main_geo_discrete_v3.m` runs the simulation for the proposed approach (geometric impedance control-version 2, GIC-v2) - Equation (47)\
+`main_imp_discrete.m` runs the simulation for the benchmark approach (conventional impedance control, CIC)\
+`main_imp_discrete_v2.m` runs the simulation for the benchmark approach, version 2 (Not rigorously tested)\
+`plotter.m` for visualizing the result -- GIC-v1 vs CIC
+`plotter2.m` for visualizing the result -- GIC-v2 vs CIC
+### Note
+Comparison results on `plotter2.m` is not presented in the paper since the two control laws are different, thus unable to do fair comparison. 
 
 `plotter_geo_comp.m` for comparison between two geometric controllers. When the gains become different, they started to behave different.\
 When gains are scalar in translational and rotational way, the both controllers are identical.

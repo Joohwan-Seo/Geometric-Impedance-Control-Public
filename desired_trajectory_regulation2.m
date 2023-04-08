@@ -1,4 +1,4 @@
-function [Rd, pd, xi_d, dxi_d] = desired_trajectory3(t,g_0,tf,target)
+function [Rd, pd, xi_d, dxi_d] = desired_trajectory_regulation2(t,g_0,tf,target)
 
     if t < 1/5 * tf
         pd = [-0.4, 0.3, 0.2]';
