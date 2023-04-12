@@ -19,16 +19,19 @@ This is quite raw, unorganized files. I hope everyone can get some of the insigh
 3. Additional updates on the trajectory tracking simulations.
 4. Code variables are now match with the variables in the paper.
 
+### 2023/04/11
+The arxiv paper is updated to the final version.
+
 ## Main files
 `main_geo_discrete.m` runs the simulation for the proposed approach (intuitive geometric impedance) - Equation (30)\
 `main_geo_discrete_v2.m` runs the simulation for the proposed approach (geometric impedance control-version 1, GIC-v1) - Equation (32)\
 `main_geo_discrete_v3.m` runs the simulation for the proposed approach (geometric impedance control-version 2, GIC-v2) - Equation (47)\
 `main_imp_discrete.m` runs the simulation for the benchmark approach (conventional impedance control, CIC)\
 `main_imp_discrete_v2.m` runs the simulation for the benchmark approach, version 2 (Not rigorously tested)\
-`plotter.m` for visualizing the result -- GIC-v1 vs CIC
-`plotter2.m` for visualizing the result -- GIC-v2 vs CIC
+`plotter.m` for visualizing the result -- GIC-v1 vs CIC\
+`plotter2.m` for visualizing the result -- GIC-v2 vs CIC\
 ### Note
-Comparison results on `plotter2.m` is not presented in the paper since the two control laws are different, thus unable to do fair comparison. 
+Comparison results on `plotter2.m` is not presented in the paper since the two control laws are different, thus unable to do fair comparison.
 
 `plotter_geo_comp.m` is for comparison between intuitive geometric impedance control and GIC-v1. When the gains become different, they started to behave different.\
 When gains are scalar in translational and rotational way, the both controllers are identical.
