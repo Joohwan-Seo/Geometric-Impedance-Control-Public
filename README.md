@@ -65,9 +65,6 @@ IFAC world congress 2023:
 arxiv submitted version:
 https://doi.org/10.48550/arXiv.2211.07945
 
-2023/03/25 WARNING: arxiv version is still old version, we will soon update it with revised version.\
-2023/04/07 WARNING: arxiv version is still old, the latest version will be updated at 2023/04/14.
-
 ## Bibtex Citation
 @article{seo2022geometric, \
   title={Geometric Impedance Control on SE (3) for Robotic Manipulators},\
