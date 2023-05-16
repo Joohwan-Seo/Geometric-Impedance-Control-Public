@@ -17,7 +17,7 @@ This is quite raw, unorganized files. I hope everyone can get some of the insigh
 1. Control equations are added on every main_geo_discrete files.
 2. Geometric Impedance Control version 2 added
 3. Additional updates on the trajectory tracking simulations.
-4. Code variables are now match with the variables in the paper.
+4. Code variables now match with the variables in the paper.
 
 ### 2023/04/11
 The arxiv paper is updated to the final version.
