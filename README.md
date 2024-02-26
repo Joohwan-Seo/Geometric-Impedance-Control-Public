@@ -79,3 +79,13 @@ https://doi.org/10.1016/j.ifacol.2023.10.1581
   year={2023},\
   publisher={Elsevier}\
 }
+
+## Related articles:
+To be appeared and presented at American Control Conference (ACC) 2024, Toronto, Canada\
+"A Comparison Between Lie Group- and Lie Algebra- Based Potential Functions for Geometric Impedance Control"
+
+### Arxiv submitted version:
+https://arxiv.org/abs/2401.13190
+
+### Github Repo
+https://github.com/Joohwan-Seo/Geometric_Impedance_Control_Comparison
