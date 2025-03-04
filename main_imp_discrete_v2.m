@@ -109,7 +109,7 @@ for k = 1 : N-1
                      zeros(1,3),1];
     
     vd = xi_d(1:3); wd = xi_d(4:6);
-    g_ed = [R'*Rd, R'*(p - pd);
+    g_ed = [R'*Rd, -R'*(p - pd);
             zeros(1,3),1];
     R_ed = g_ed(1:3,1:3);
     p_ed = g_ed(1:3,4);
@@ -120,7 +120,7 @@ for k = 1 : N-1
 
     %%
     R_ed_dot = -hat_map(w)*R'*Rd + R'*Rd*hat_map(wd);
-    p_ed_dot = -hat_map(w)*R'*(p - pd) + v - R'*Rd*vd;
+    p_ed_dot = hat_map(w)*R'*(p - pd) - v + R'*Rd*vd;
     Ad_ged_dot = [R_ed_dot, hat_map(p_ed_dot)*R_ed + hat_map(p_ed)*R_ed_dot;
                   zeros(3,3), R_ed_dot];
     

@@ -139,15 +139,15 @@ Je_dot = simplify(Je_dot);
 %     'Vars',[q1, q2, q3, q4, q5, q6],'Outputs',{'M_mat'});
 % toc
 % 
-% tic
-% matlabFunction(Jb,'File','sub_direct/Jb_fun', ...
-%     'Vars',[q1, q2, q3, q4, q5, q6],'Outputs',{'J_mat'});
-% toc
-% 
-% tic
-% matlabFunction(Jb_dot,'File','sub_direct/Jb_dot_fun', ...
-%     'Vars',[q1, q2, q3, q4, q5, q6, dq1, dq2, dq3, dq4, dq5, dq6],'Outputs',{'dJ_mat'});
-% toc
+tic
+matlabFunction(Jb,'File','sub_direct/Jb_fun', ...
+    'Vars',[q1, q2, q3, q4, q5, q6],'Outputs',{'J_mat'});
+toc
+
+tic
+matlabFunction(Jb_dot,'File','sub_direct/Jb_dot_fun', ...
+    'Vars',[q1, q2, q3, q4, q5, q6, dq1, dq2, dq3, dq4, dq5, dq6],'Outputs',{'dJ_mat'});
+toc
 
 tic
 matlabFunction(Je,'File','sub_direct/Je', ...
