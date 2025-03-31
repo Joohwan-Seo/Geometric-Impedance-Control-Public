@@ -71,14 +71,14 @@ https://doi.org/10.1016/j.ifacol.2023.10.1581
 ## Bibtex Citation
 ```
 @article{seo2023geometric,
-  title={Geometric impedance control on SE (3) for robotic manipulators},\
-  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Choi, Jongeun and Horowitz, Roberto},\
-  journal={IFAC-PapersOnLine},\
-  volume={56},\
-  number={2},\
-  pages={276--283},\
-  year={2023},\
-  publisher={Elsevier}\
+  title={Geometric impedance control on SE (3) for robotic manipulators},
+  author={Seo, Joohwan and Prakash, Nikhil Potu Surya and Rose, Alexander and Choi, Jongeun and Horowitz, Roberto},
+  journal={IFAC-PapersOnLine},
+  volume={56},
+  number={2},
+  pages={276--283},
+  year={2023},
+  publisher={Elsevier},
 }
 ```
 
